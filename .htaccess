@@ -1,0 +1,14 @@
+
+# Impedir acesso direto ao arquivo index.php
+Options -Indexes
+
+# Redirecionar para a página de erro 404
+ErrorDocument 404 /app/views/errors/error_404.php
+
+# Redirecionar para a página de erro 500
+ErrorDocument 500 /app/views/errors/error_500.php
+
+# Redirecionar para a página de erro 403
+ErrorDocument 403 /app/views/errors/error_403.php
+
+DirectoryIndex index.php

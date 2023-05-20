@@ -1,0 +1,28 @@
+.card {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .btn-login {
+    width: 100%;
+  }
+
+  .btn-register {
+    margin-top: 10px;
+    width: 100%;
+  }
