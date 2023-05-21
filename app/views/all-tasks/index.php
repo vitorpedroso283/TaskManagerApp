@@ -23,7 +23,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . Routes::getConfigsRoutes()['authenticat
             <div class="col-md-12">
                 <div class="card mt-5">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h3 class="card-title m-0">Tarefas Pendentes</h3>
+                        <h3 class="card-title m-0">Todas tarefas</h3>
                         <!-- Botão de inclusão fixo -->
                         <button id="createTaskButton" class="btn btn-primary btn-lg">
                             <span class="fas fa-plus"></span> Criar Tarefa
@@ -43,10 +43,10 @@ require_once($_SERVER["DOCUMENT_ROOT"] . Routes::getConfigsRoutes()['authenticat
 
         <!-- Modal de inclusão de tarefa -->
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . Routes::getViewsRoutes()['home'] . 'modals/create_task_modal.php') ?>
-        <!-- Modal de edição de tarefa -->
+            <!-- Modal de edição de tarefa -->
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . Routes::getViewsRoutes()['home'] . 'modals/edit_task_modal.php') ?>
         <?php include_once($_SERVER['DOCUMENT_ROOT'] . Routes::getViewsRoutes()['includes'] . "libs.php") ?>
-        <script src="/public/js/home/home.js"></script>
+        <script src="/public/js/allTasks/allTasks.js"></script>
     </div>
 </body>
 

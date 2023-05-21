@@ -34,6 +34,7 @@ class Routes
             "includes" =>  self::$roots["views"] . "includes/",
             "login" => self::$roots['views'] . "login/",
             "home" => self::$roots['views'] . "home/",
+            "allTasks" => self::$roots['views'] . "all-tasks",
             "accessControl" => self::$roots['views'] . "access-control/"
         );
     }

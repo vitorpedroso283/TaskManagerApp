@@ -26,6 +26,7 @@ $(document).ready(function () {
         });
     }
     function getTasks(userPermissions) {
+        console.log(userPermissions);
 
         // Verificar se possui a permissão 'P' para exibir os botões de exportação
         var buttons = userPermissions.includes('P') ? [
@@ -35,6 +36,7 @@ $(document).ready(function () {
             { extend: 'pdf', className: 'btn btn-primary mr-1' },
             { extend: 'excel', className: 'btn btn-primary mr-1' }
         ] : [];
+
         // Verificar se possui a permissão 'R' antes de chamar a função getTasks
         if (userPermissions.includes('R')) {
             return $("#taskTable").DataTable({
@@ -43,7 +45,7 @@ $(document).ready(function () {
                 ajax: {
                     url: "/app/routers/taskManagerRouter.php",
                     type: 'POST',
-                    data: { action: 'getTasks', callGetTasks: 'pending' },
+                    data: { action: 'getTasks', callGetTasks: 'all' },
                     dataSrc: function (json) {
                         return json;
                     },
@@ -116,9 +118,12 @@ $(document).ready(function () {
                     data: 'status',
                     title: 'CONCLUÍDO',
                     render: function (data, type, row) {
-                        if (data === 1) {
+                        if (data === 1 && userPermissions.includes('A')) {
                             return '<input id="changeStatusButton" data-status="' + data + '" data-task-id="' + row.id + '" type="checkbox" checked>';
-                        } else {
+                        } else if (data === 1) {
+                            return '<i class="fas fa-check"></i>';
+                        }
+                        else {
                             return '<input id="changeStatusButton" data-status="' + data + '" data-task-id="' + row.id + '" type="checkbox">';
                         }
                     }
@@ -155,6 +160,7 @@ $(document).ready(function () {
             return null;
         }
     }
+
 
     $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
 
@@ -301,7 +307,6 @@ $(document).ready(function () {
 
         console.log(taskId);
     });
-
     // evento para atualizar o status da tarefa
     function updateTaskStatus(taskId, status) {
         // Fazer a requisição AJAX para atualizar o status da tarefa no servidor
@@ -318,8 +323,12 @@ $(document).ready(function () {
                     console.log(response.message);
                 }
             },
-            error: function () {
-                console.log('Erro na requisição AJAX');
+            error: function (xhr, status, error) {
+                if (xhr.status === 400) {
+                    sweetAlertToast('Você não possui acesso para atualizar a tarefa!');
+                } else {
+                    console.log("Erro na requisição:", error);
+                }
             }
         });
     }
