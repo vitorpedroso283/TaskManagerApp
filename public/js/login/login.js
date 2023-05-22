@@ -90,5 +90,37 @@ $(document).ready(function () {
 
         return hasSpecialChar && hasNumber && hasUpperCase && isMinLength;
     }
+
+    // Evento para alternar a visualização da senha no campo de senha do cadastro
+    $("#togglePassword").click(function () {
+        const passwordInput = $("#password2");
+        const passwordFieldType = passwordInput.attr("type");
+
+        // Alternar entre 'password' e 'text' para mostrar ou ocultar a senha
+        if (passwordFieldType === "password") {
+            passwordInput.attr("type", "text");
+            $("#togglePassword i").removeClass("fas fa-eye").addClass("fas fa-eye-slash");
+        } else {
+            passwordInput.attr("type", "password");
+            $("#togglePassword i").removeClass("fas fa-eye-slash").addClass("fas fa-eye");
+        }
+    });
+
+    // Evento para alternar a visualização da senha no campo de senha do cadastro
+    $("#togglePassword2").click(function () {
+        const passwordInput = $("#password");
+        const passwordFieldType = passwordInput.attr("type");
+
+        // Alternar entre 'password' e 'text' para mostrar ou ocultar a senha
+        if (passwordFieldType === "password") {
+            passwordInput.attr("type", "text");
+            $("#togglePassword2 i").removeClass("fas fa-eye").addClass("fas fa-eye-slash");
+        } else {
+            passwordInput.attr("type", "password");
+            $("#togglePassword2 i").removeClass("fas fa-eye-slash").addClass("fas fa-eye");
+        }
+    });
+
+
 });
 

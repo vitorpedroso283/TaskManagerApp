@@ -14,8 +14,7 @@
           </div>
           <div class="mb-3">
             <label for="phone" class="form-label">Telefone</label>
-            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Insira seu telefone" maxlength="15" onkeyup="handlePhone(event)" required />
-
+            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Insira seu telefone" minlength="14" maxlength="15" onkeyup="handlePhone(event)" required />
           </div>
           <div class="mb-3">
             <label for="email" class="form-label">E-mail</label>
@@ -23,7 +22,12 @@
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password2" name="password" autocomplete="off" placeholder="Escolha uma senha forte" required>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password2" name="password" autocomplete="off" placeholder="Escolha uma senha forte" required>
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-register">Cadastrar</button>
         </form>

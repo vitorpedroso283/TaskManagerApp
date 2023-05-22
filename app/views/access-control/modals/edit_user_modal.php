@@ -23,7 +23,12 @@
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="password_edit" name="password" autocomplete="off" placeholder="Se não quiser alterar a senha, só deixar em branco.">
+            <div class="input-group">
+              <input type="password" class="form-control" id="password_edit" name="password" autocomplete="off" placeholder="Se não quiser alterar a senha, só deixar em branco.">
+              <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
           </div>
           <button type="submit" class="btn btn-primary btn-register">Salvar</button>
         </form>

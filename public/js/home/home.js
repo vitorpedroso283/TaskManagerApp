@@ -123,30 +123,34 @@ $(document).ready(function () {
                         }
                     }
                 },
-                // Renderizar coluna de ações
+
                 {
                     title: 'AÇÕES',
                     render: function (data, type, row) {
                         var actions = '';
+                        // Verificar se possui a permissão 'U' ou 'D' para exibir os botões de edição e exclusão
+                        if (userPermissions.includes('U') || userPermissions.includes('D')) {
+                            // Verificar se possui a permissão 'U' para exibir o botão de edição
+                            if (userPermissions.includes('U')) {
+                                actions += '<a class="dropdown-item" id="editTaskButton" href="#" data-task-id="' + row.id + '"><i class="fas fa-pencil-alt"></i> Editar</a>';
+                            }
 
-                        // Verificar se possui a permissão 'U' para exibir o botão de edição
-                        if (userPermissions.includes('U')) {
-                            actions += '<a class="dropdown-item" id="editTaskButton" href="#" data-task-id="' + row.id + '"><i class="fas fa-pencil-alt"></i> Editar</a>';
+                            // Verificar se possui a permissão 'D' para exibir o botão de exclusão
+                            if (userPermissions.includes('D')) {
+                                actions += '<a class="dropdown-item" id="deleteTaskButton" href="#" data-task-id="' + row.id + '"><i class="fas fa-trash"></i> Excluir</a>';
+                            }
+
+                            return '<div class="dropdown">' +
+                                '<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                                'Ações' +
+                                '</button>' +
+                                '<div class="dropdown-menu">' +
+                                actions +
+                                '</div>' +
+                                '</div>';
                         }
 
-                        // Verificar se possui a permissão 'D' para exibir o botão de exclusão
-                        if (userPermissions.includes('D')) {
-                            actions += '<a class="dropdown-item" id="deleteTaskButton" href="#" data-task-id="' + row.id + '"><i class="fas fa-trash"></i> Excluir</a>';
-                        }
-
-                        return '<div class="dropdown">' +
-                            '<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                            'Ações' +
-                            '</button>' +
-                            '<div class="dropdown-menu">' +
-                            actions +
-                            '</div>' +
-                            '</div>';
+                        return '<button class="btn btn-secondary" id="botãoSemPermissão">Editar</button>';
                     }
                 }],
             });
@@ -164,6 +168,17 @@ $(document).ready(function () {
         var modal = $('#taskModal');
         modal.find('#taskForm')[0].reset();
         modal.modal('show');
+    });
+    
+    // Adicionar evento de clique ao botão para abrir o aviso de permissão"
+    $(document).on('click', '#botãoSemPermissão', function () {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Usuário sem permissões extras!',
+            showConfirmButton: false,
+            timer: 1500
+        })
     });
 
     // Evento de abertura do modal para edição da tarefa

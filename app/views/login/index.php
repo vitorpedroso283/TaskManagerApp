@@ -14,6 +14,8 @@ session_destroy(); // Destrói a sessão
     <title>TASK</title>
     <link rel="stylesheet" href="/vendor/bootstrap/bootstrap-5.3.0-alpha3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 
 <body>
@@ -32,12 +34,18 @@ session_destroy(); // Destrói a sessão
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="password" placeholder="Insira sua senha" name="password" required>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" placeholder="Insira sua senha" name="password" required>
+                                    <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-login">Login</button>
                             <button type="button" class="btn btn-link btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Cadastre-se</button>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
